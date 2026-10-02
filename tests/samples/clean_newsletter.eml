@@ -1,0 +1,37 @@
+From: "Example Weekly" <news@news.example.com>
+Reply-To: news@news.example.com
+To: user@example.com
+Subject: Your weekly digest from Example
+Date: Mon, 28 Sep 2026 08:00:00 +0000
+Authentication-Results: mx.example.com; spf=pass
+ smtp.mailfrom=news.example.com; dkim=pass header.d=example.com; dmarc=pass
+ (p=reject) header.from=news.example.com
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============7103155835528748164=="
+
+--===============7103155835528748164==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Hi there,
+
+Here's what's new this week. Read the latest articles and updates below.
+
+Top story: https://news.example.com/weekly
+Manage your subscription: https://example.com/unsubscribe
+
+Cheers,
+The Example Team
+
+--===============7103155835528748164==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body><p>Hi there,</p><p>Here's what's new this week.</p><p><a href=3D'=
+https://news.example.com/weekly'>https://news.example.com/weekly</a></p><p><a=
+ href=3D'https://example.com/unsubscribe'>Unsubscribe</a></p><p>Cheers,<br>Th=
+e Example Team</p></body></html>
+
+--===============7103155835528748164==--

@@ -1,0 +1,4 @@
+filename,label
+phishing_bec_qr.eml,phishing
+suspicious_lookalike.eml,suspicious
+clean_newsletter.eml,clean

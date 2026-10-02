@@ -1,0 +1,32 @@
+# PhishLens — one command to run the whole thing:  docker compose up --build
+#
+# Keys come from your local .env file (NOT committed, NOT in the image).
+# The SQLite VirusTotal cache is persisted in a named volume so it survives restarts.
+
+services:
+  phishlens:
+    build: .
+    image: phishlens:1.0.0
+    container_name: phishlens
+    ports:
+      - "127.0.0.1:8001:8000" # open http://127.0.0.1:8001
+    env_file:
+      - .env                 # GROQ_API_KEY, VT_API_KEY (see .env.example)
+    volumes:
+      - phishlens-cache:/data
+    restart: unless-stopped
+    # Hardening: no new privileges, read-only root FS (cache lives on the volume).
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health').status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  phishlens-cache:

@@ -1,0 +1,24 @@
+# Keep secrets and local cruft OUT of the build context / image.
+.env
+api key.txt
+*.key
+cache.db
+*.sqlite*
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+.git/
+.gitignore
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Docs that don't need to ship inside the image
+*.pdf

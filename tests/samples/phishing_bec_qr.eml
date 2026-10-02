@@ -1,0 +1,73 @@
+From: "Sarah Klein, CEO" <ceo@acme-corp.com>
+Reply-To: sarah.klein.private@gmail.com
+To: finance@acme-corp.com
+Subject: Urgent =?utf-8?b?4oCU?= confidential wire transfer before 5 pm today
+Date: Wed, 30 Sep 2026 09:14:02 +0000
+Authentication-Results: mx.acme-corp.com; spf=fail
+ smtp.mailfrom=bounce@mailer-hub.net; dkim=none; dmarc=fail (p=reject)
+ header.from=acme-corp.com
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============1995601545912032920=="
+
+--===============1995601545912032920==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+I'm in back-to-back meetings and can't take calls. I need you to process a co=
+nfidential wire transfer today before 5 pm. Our supplier's bank details chang=
+ed =E2=80=94 new account below. Please keep this between us for now.
+
+To confirm your identity on the finance portal, scan the QR code in this emai=
+l and sign in.
+
+Thanks,
+Sarah Klein
+Chief Executive Officer
+
+--===============1995601545912032920==
+MIME-Version: 1.0
+Content-Type: multipart/related;
+ boundary="===============1335526315698528746=="
+
+--===============1335526315698528746==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><body style=3D'font-family:Arial'><p>Hi,</p><p>I'm in back-to-back meet=
+ings and can't take calls. I need you to process a <b>confidential wire trans=
+fer today before 5 pm</b>. Our supplier's bank details changed. Please keep t=
+his between us for now.</p><p>To confirm your identity on the finance portal,=
+ scan this QR code and sign in:</p><p><img src=3D'cid:qr001' width=3D'160' he=
+ight=3D'160' alt=3D'verify'></p><p>You can also <a href=3D'http://secure-logi=
+n-verify.xyz/auth?id=3D8812'>www.acme-corp.com/portal</a>.</p><p>Thanks,<br>S=
+arah Klein<br>Chief Executive Officer</p></body></html>
+
+--===============1335526315698528746==
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="verify.png"
+Content-ID: <qr001>
+MIME-Version: 1.0
+
+iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaAQAAAAAefbjOAAADGElEQVR4nO1cW4qjUBCtSoR8KvQC
+eim6g1lSM0vqHehSegED3s8GQw31uGoCAy0Jk5h7zod947VAj0W9bRbajOGwXYYIQgEQEQARARAR
+ABEBEBEAEXsiggMVcUdn5i7pKumpxn7mC7qH3N5GQOgORLSiGHWZKpJeF8O7CLV2jo62n6NQUF4A
+ESkMgCkDc6Na8lXpztH1wCzIw25vEyB0CxHV1W9u+6kyHRBKRDI0biQuAMoLIkJ6NQpDkw2FGo8n
+ur0fAUL3sBG12oWkq/Q2cTueK2o/3zTAOFduLVZCoPz1iRgsk1DL4NlEOkX00KWTeP6heNTtbQOE
+brcRcnlSKJ1ZXQebeQgLsgCUvzAR5FllO0aa4QeRKSIKqicSGY8ifT1Flto/+TMdIHQHr9HosZ6I
+u1qEuTkKd/U3ez3CdxOyz6Iiy5FYCxBCqZpk+GWu4yQ0WOxQ/2E9VPt4pgOEbvYa0tdakNRDO871
+SXUTtDiR2s/DaxShETIe18qgK2rFNMJWoSDQiHJsBEXs6FFkhJJZD8I8QCMK6n1+jGe2KgTz+7fG
+DGYezhpZ5r5GlzscO3mmjYBQRo4ZJPJLX9nGnHNa79PMCOKIAuOIMVaLecgNUGhEQRUqmicgQhkW
+VbGrrFalu8g1CrIRom//Osb0oPJSS1CzLMJGKOY4QvMKg9sIK1xaMgobUZTX6L32MK3fvpmHVbQJ
+G1GQRpAVoiy8tDnLKGHaco4yoBHFxBEUzsHhdalpfR16n6X2NSSUIeLJ3MyAjShsPkLmgQjzELk4
+FXGEAdlnUV4jY8krlo5n7nTla5B9lvRNl0F6H42IT7x8WGYVZezimTYCQv/8potsOl/1wP2HnrIY
+M3/kA/ZeWo2q+JsaovZTP9nR3qfO5LP2PsU2fJBqmdB98mc6QOiORLA1vYdmmZjJFuT3MrsPygNl
+EJGYqf1inc7X8VvLP+zDrly43OEz/QAQuiKiznVqyzm93ZWvsV3+GGEjiut0UfiKSDJdQaJ+Fe1R
+ZJ+vLsT4z2S7eE8HCDlARABEBEBEAEQEQETg/xHxF65fpsT/W2VJAAAAAElFTkSuQmCC
+
+--===============1335526315698528746==--
+
+--===============1995601545912032920==--

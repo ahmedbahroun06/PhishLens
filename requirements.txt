@@ -1,0 +1,10 @@
+# PhishLens dependencies (Python 3.11+)
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20      # FastAPI form/file uploads
+python-dotenv==1.0.1          # load .env
+requests==2.32.3              # VirusTotal + Groq HTTP calls
+dnspython==2.7.0              # SPF/DMARC DNS TXT lookups
+dkimpy==1.1.8                 # DKIM re-verification
+Pillow==11.1.0               # open images for QR decoding
+pyzbar==0.1.9                 # decode QR codes (needs the native zbar library)

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhishLens — See what's really behind the email</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header><div class="wrap">
+  <div class="logo">
+    <img class="logo-img" src="/static/logo.svg" width="34" height="34" alt="PhishLens logo">
+    Phish<span>Lens</span>
+  </div>
+  <nav><a onclick="toggleHow()" role="button" tabindex="0">How it works</a><a href="#" onclick="reset();return false">New analysis</a><span class="tag" id="modeTag" aria-live="polite">…</span></nav>
+</div></header>
+
+<div class="wrap">
+  <section class="hero" id="hero">
+    <h1>See what's really <em>behind the email.</em></h1>
+    <p>Upload a suspicious email. Get a verdict, every signal, and a plain-language explanation.</p>
+  </section>
+
+  <div class="card" id="how" hidden><div class="sec-t">How PhishLens works</div><ol>
+    <li><b>Parse</b> the .eml file (sender, reply-to, body, images).</li>
+    <li><b>Check headers</b>: SPF, DKIM, DMARC, Reply-To mismatch.</li>
+    <li><b>Extract</b> every link, including links hidden in QR codes.</li>
+    <li><b>VirusTotal</b> checks each link's reputation (cached).</li>
+    <li><b>AI reasoning</b> (Groq) reads the evidence and explains it.</li>
+    <li><b>Score</b> all signals and return the verdict.</li></ol></div>
+
+  <!-- STATE A: UPLOAD -->
+  <div class="card" id="upload">
+    <div class="tabs"><button class="on" id="t1" onclick="tab(1)">Upload .eml</button><button id="t2" onclick="tab(2)">Paste raw email</button></div>
+    <div id="p1">
+      <label class="drop" id="drop">
+        <input type="file" id="fileIn" accept=".eml,.txt,message/rfc822" hidden>
+        <div class="ic"><svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg></div>
+        <b>Drop your .eml file here</b><small>or click to browse · in your mail app use "Download original" or "Show source"</small>
+        <div class="file" id="fname"></div>
+      </label>
+    </div>
+    <div id="p2" hidden><textarea id="raw" aria-label="Raw email" placeholder="From: &quot;CEO&quot; &lt;ceo@company.com&gt;&#10;Reply-To: ceo.private@gmail.com&#10;Subject: Urgent wire transfer&#10;&#10;Paste the full raw email (headers + body) here…  (Ctrl+Enter to analyze)"></textarea></div>
+    <div class="actions">
+      <div class="samples">Try a bundled sample:
+        <button class="chip" onclick="runSample('phishing_bec_qr.eml')">Phishing (BEC + QR)</button>
+        <button class="chip" onclick="runSample('suspicious_lookalike.eml')">Suspicious</button>
+        <button class="chip" onclick="runSample('clean_newsletter.eml')">Clean newsletter</button></div>
+      <button class="btn" id="go" disabled onclick="analyze()">Analyze
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+    </div>
+    <div class="err" id="err" role="alert" hidden></div>
+  </div>
+
+  <!-- STATE C: LIVE PIPELINE -->
+  <div class="card" id="pipe" role="status" aria-live="polite" hidden>
+    <div class="pipe-h"><h3 id="pipeTitle">Analyzing email…</h3><span id="pipeTime">0.0 s</span></div>
+    <div class="steps"><div class="track"><div class="fill" id="fill"></div></div><div id="stepWrap" style="display:contents"></div></div>
+  </div>
+
+  <!-- REPORT -->
+  <div id="report" hidden>
+    <div class="banner" id="banner">
+      <div class="ring"><svg width="84" height="84" aria-hidden="true"><circle cx="42" cy="42" r="36" fill="none" stroke="rgba(0,0,0,.07)" stroke-width="8"/><circle id="arc" cx="42" cy="42" r="36" fill="none" stroke-width="8" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="226" style="transition:stroke-dashoffset 1s"/></svg><div class="ring-num"><span id="score">0</span><small>/100</small></div></div>
+      <div class="banner-txt"><h2 id="vTitle"></h2><p id="vSub"></p></div>
+    </div>
+
+    <div class="metaStrip" id="metaStrip"></div>
+    <div class="notice" id="notice" hidden></div>
+
+    <div class="grid">
+      <div class="card"><div class="sec-t">Signals checklist <span class="sig-sum" id="sigSum"></span></div><div id="sigs"></div></div>
+      <div class="card"><div class="sec-t">AI analysis · Groq</div>
+        <div class="meter"><div class="top"><span>Phishing intent</span><span id="becL"></span></div><div class="bar"><i id="becB"></i></div></div>
+        <div class="meter"><div class="top"><span>AI-generated text</span><span id="aiL"></span></div><div class="bar"><i id="aiB"></i></div></div>
+        <div class="expl" id="expl"></div>
+        <div class="srcline" id="srcline"></div></div>
+    </div>
+    <div class="card" style="margin-top:20px"><div class="sec-t">Extracted URLs · VirusTotal</div>
+      <div class="tbl-wrap"><table><thead><tr><th>URL</th><th>Found in</th><th>Detections</th><th>Status</th></tr></thead><tbody id="urls"></tbody></table></div></div>
+    <div class="foot">
+      <button class="btn ghost" id="copyBtn" onclick="copyJSON()">Copy JSON</button>
+      <button class="btn ghost" onclick="downloadJSON()">Download JSON</button>
+      <button class="btn" onclick="reset()">Analyze another email</button>
+    </div>
+  </div>
+  <p class="note">PhishLens · emails are analyzed in memory and not stored · PhishLens informs, you decide what to do.</p>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <a class="footer-brand" href="/" aria-label="PhishLens home">
+      <img class="footer-logo" src="/static/logo.svg" width="28" height="28" alt="">
+      <span>Phish<span>Lens</span></span>
+    </a>
+    <p>© 2026 Ahmed Bahroun. All rights reserved.</p>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Use</a>
+      <a href="https://github.com/ahmedbahroun06" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/ahmedbahroun" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

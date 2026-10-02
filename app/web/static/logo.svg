@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="PhishLens logo">
+  <defs>
+    <linearGradient id="pl-g" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <!-- badge -->
+  <rect width="40" height="40" rx="11" fill="url(#pl-g)"/>
+  <!-- magnifying-glass lens -->
+  <circle cx="17" cy="16.5" r="7.6" fill="none" stroke="#fff" stroke-width="2.8"/>
+  <!-- handle that curves into a fish hook with a barb -->
+  <path d="M22.6 22.1 L27.2 26.7 Q30.4 29.9 27.9 32.4 Q25.6 34.6 23.4 32.6"
+        fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M23.4 32.6 L25.6 31.2" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+</svg>

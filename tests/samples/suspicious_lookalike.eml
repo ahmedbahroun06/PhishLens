@@ -1,0 +1,21 @@
+From: "PayPal Billing" <service@paypa1-billing.com>
+Reply-To: service@paypa1-billing.com
+To: user@example.com
+Subject: Your invoice #2291 is ready =?utf-8?b?4oCU?= please confirm
+Date: Tue, 29 Sep 2026 17:40:11 +0000
+Authentication-Results: mx.example.com; spf=pass
+ smtp.mailfrom=paypa1-billing.com; dkim=none; dmarc=fail (p=none)
+ header.from=paypa1-billing.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hello,
+
+Your invoice #2291 is ready. Please confirm the payment details at the link b=
+elow.
+
+https://paypa1-billing.com/invoice/2291
+
+Thank you,
+Billing Team
