@@ -33,18 +33,21 @@ It's an on-demand forensic tool, like a malware sandbox for emails. It is not a 
 
 ## Features
 
-- **Two inputs:** drag-and-drop an `.eml`, or paste the raw email
-- **Explainable verdict:** colour-coded banner, 0-100 score, and a checklist of every signal with its exact point contribution
-- **Sender authentication:** SPF, DKIM (re-verified with `dkimpy`), and DMARC (live DNS lookup)
-- **Impersonation checks:** Reply-To mismatch, display-name spoofing, lookalike domains (typo and homoglyph aware, e.g. `paypa1` and `micros0ft`)
-- **Link analysis:** deceptive links (visible text vs real `href`), lookalike link domains, insecure `http://` links
-- **QR-code phishing (quishing):** decodes QR images in the email and checks the hidden URLs
-- **URL reputation:** VirusTotal v3 (~70 engines), cached in SQLite and rate-limited for the free tier
-- **AI analysis:** phishing-intent level, AI-generated-text estimate, and a plain-language explanation
-- **Live pipeline view:** six stages animate while the analysis runs
-- **CLI included:** same engine from the terminal, exit code encodes the verdict
-- **Graceful degradation:** works with no API keys (technical signals still run, AI falls back to an offline estimate) and the report says which service was skipped
-- **Export:** copy or download the JSON report
+* **Two inputs:** drag-and-drop an `.eml` file or paste the raw email
+* **Explainable verdict:** colour-coded banner, 0–100 score, and a checklist showing every signal and its exact point contribution
+* **Sender authentication:** SPF, DKIM (re-verified with `dkimpy`), and DMARC (live DNS lookup)
+* **Impersonation checks:** Reply-To mismatch, display-name spoofing, and lookalike domains (typo- and homoglyph-aware, e.g. `paypa1` and `micros0ft`)
+* **Link analysis:** deceptive links (visible text vs. actual `href`), lookalike link domains, and insecure `http://` links
+* **QR-code phishing (quishing):** decodes QR images in emails and checks the hidden URLs
+* **URL reputation:** VirusTotal v3 (~70 engines), with results cached in SQLite and rate-limited for the free tier
+* **AI analysis:** phishing-intent level, LLM-generated text heuristic, and a plain-language explanation
+
+  > **Note:** The LLM-generated text heuristic is a low-confidence supporting signal and is intentionally given minimal weight because AI-generated-text detection is inherently unreliable. PhishLens relies primarily on technical email and threat-intelligence evidence.
+* **Live pipeline view:** six stages animate while the analysis runs
+* **CLI included:** uses the same analysis engine from the terminal, with the exit code encoding the verdict
+* **Graceful degradation:** works without API keys; technical signals still run, while AI analysis falls back to a local heuristic. The report indicates which services were unavailable or skipped
+* **Export:** copy or download the JSON report
+
 
 ## How it works
 
