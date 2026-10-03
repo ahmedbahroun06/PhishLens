@@ -9,7 +9,7 @@
 
 PhishLens analyzes one suspicious email and tells you whether it's **Phishing**, **Suspicious**, or **Clean**, with every reason explained in plain language. Upload an `.eml` file (or paste the raw email) and get a scored, auditable report instead of a black-box guess.
 
-**Live demo:** https://phishlens-va98.onrender.com (use the sample buttons to try it without your own email)
+**Live demo:** https://phishlens-va98.onrender.com 
 
 ![PhishLens demo](docs/demo.gif)
 
