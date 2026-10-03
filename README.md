@@ -214,6 +214,4 @@ phishlens/
 └── docker-compose.yml
 ```
 
-## License
 
-MIT. See [LICENSE](LICENSE).
