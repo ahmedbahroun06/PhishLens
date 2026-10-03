@@ -2,12 +2,16 @@
 
 **See what's really behind the email.**
 
+![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688)
+![Docker](https://img.shields.io/badge/docker-ready-2496ED)
+![License: MIT](https://img.shields.io/badge/license-MIT-green)
+
 PhishLens analyzes one suspicious email and tells you whether it's **Phishing**, **Suspicious**, or **Clean**, with every reason explained in plain language. Upload an `.eml` file (or paste the raw email) and get a scored, auditable report instead of a black-box guess.
 
-<!-- TODO: add a screenshot or GIF of the report page here -->
-<!-- ![PhishLens report](docs/screenshot.png) -->
+**Live demo:** https://phishlens-va98.onrender.com (use the sample buttons to try it without your own email)
 
-**Live demo:** <!-- TODO: add URL after deploy -->
+![PhishLens demo](docs/demo.gif)
 
 ## Why it's different
 
@@ -18,6 +22,14 @@ Most "AI phishing detectors" send the raw email to an LLM and ask for an opinion
 3. A transparent scoring step adds up the signals. No single signal decides the verdict; several have to stack.
 
 It's an on-demand forensic tool, like a malware sandbox for emails. It is not a mailbox monitor or a spam filter, and it never blocks anything. It informs, you decide.
+
+## Screenshots
+
+| Phishing | Clean |
+|---|---|
+| ![Phishing report](docs/report-phishing.png) | ![Clean report](docs/report-clean.png) |
+
+![Signals, AI analysis and extracted URLs](docs/report-details.png)
 
 ## Features
 
@@ -76,7 +88,7 @@ You need two free API keys:
 
 ```bash
 cp .env.example .env          # add your two keys
-docker compose up --build     # open http://localhost:8000
+docker compose up --build     # open http://localhost:8001
 ```
 
 The image bundles the native `zbar` library, so QR decoding works out of the box.
@@ -86,7 +98,7 @@ The image bundles the native `zbar` library, so QR decoding works out of the box
 ```bash
 pip install -r requirements.txt    # needs native zbar: apt install libzbar0 / brew install zbar
 cp .env.example .env
-uvicorn app.web.main:app --reload
+uvicorn app.web.main:app --reload  # open http://localhost:8000
 ```
 
 On bare Windows Python, QR decoding is skipped because `zbar` isn't available. Use Docker for the full feature set.
@@ -159,7 +171,11 @@ Three synthetic samples ship in `tests/samples/` (all domains and links are fict
 | `suspicious_lookalike.eml` | suspicious | 55 |
 | `clean_newsletter.eml` | clean | 0 |
 
-This confirms the pipeline works end to end. It does not prove the detector generalizes, since the set is tiny and self-generated. <!-- TODO: replace with real numbers after running on a larger set (Nazario corpus + own clean emails) -->
+This confirms the pipeline works end to end. It does not prove the detector generalizes, since the set is tiny and self-generated. Growing the set with real phishing and clean emails is the next step.
+
+## Deployment
+
+The live demo runs from the same Dockerfile on Render's free tier. The VirusTotal cache is not persisted there, so it resets on restart, which only means a few extra lookups.
 
 ## Security and privacy
 
@@ -192,6 +208,7 @@ phishlens/
 ├── analyze.py         # CLI
 ├── tests/             # sample emails + generator
 ├── eval/              # evaluate.py + labels.csv
+├── docs/              # screenshots and demo GIF
 ├── package.py         # builds a secret-free share zip
 ├── Dockerfile
 └── docker-compose.yml
@@ -199,4 +216,4 @@ phishlens/
 
 ## License
 
-<!-- TODO: add license after choosing one -->
+MIT. See [LICENSE](LICENSE).
